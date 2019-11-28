@@ -2,12 +2,20 @@ package com.example.projetoandroid;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListaTarefas extends AppCompatActivity {
 
@@ -21,20 +29,24 @@ public class ListaTarefas extends AppCompatActivity {
         setContentView(R.layout.lista_tarefas);
 
         recyclerView = findViewById(R.id.recyclerView);
+        final ArrayList<Tarefa> tarefas = new ArrayList<>();
 
-        Tarefa tarefa = new Tarefa();
-        tarefa.setTitulo("Titulo");
-        tarefa.setDescricao("Descrição");
-        tarefa.setUsuario(new Usuario(1,"dayane"));
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.child("tarefas").getChildren()){
+                    String titulo = ds.child("titulo").getValue(String.class);
+                    String descricao = ds.child("descricao").getValue(String.class);
+                    tarefas.add(new Tarefa(descricao, titulo));
+                }
+            }
 
-        Tarefa tarefa2 = new Tarefa();
-        tarefa2.setTitulo("Titulo 2");
-        tarefa2.setDescricao("Descrição 2");
-        tarefa2.setUsuario(new Usuario(2,"marcos"));
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        ArrayList<Tarefa> tarefas = new ArrayList<>();
-        tarefas.add(tarefa);
-        tarefas.add(tarefa2);
+            }
+        });
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

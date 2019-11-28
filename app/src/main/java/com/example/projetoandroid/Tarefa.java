@@ -11,6 +11,15 @@ public class Tarefa {
     ImageView foto;
     Usuario usuario;
 
+    public Tarefa(String descricao, String titulo) {
+        this.descricao = descricao;
+        this.titulo = titulo;
+    }
+
+    public Tarefa() {
+
+    }
+
     public Integer getId() {
         return id;
     }

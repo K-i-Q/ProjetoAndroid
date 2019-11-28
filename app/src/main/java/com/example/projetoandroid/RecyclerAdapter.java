@@ -32,8 +32,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         holder.titulo.setText(tarefa.getTitulo());
         holder.descricao.setText(tarefa.getDescricao());
-        holder.usuario.setText(tarefa.getUsuario().getNome());
-     //   holder.foto.setImageView(tarefa.getFoto());
+     //   holder.usuario.setText(tarefa.getUsuario().getNome());
+       // holder.foto.setImageView(tarefa.getFoto());
 
 
     }
@@ -50,8 +50,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         }
         TextView titulo = itemView.findViewById(R.id.txtTitulo);
         TextView descricao = itemView.findViewById(R.id.txtDescricao);
-        TextView usuario = itemView.findViewById(R.id.txtUsuario);
-        ImageView foto = itemView.findViewById(R.id.imageView);
+        //TextView usuario = itemView.findViewById(R.id.txtUsuario);
+        //ImageView foto = itemView.findViewById(R.id.imageView);
 
 
 
