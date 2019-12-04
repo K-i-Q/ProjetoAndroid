@@ -5,6 +5,7 @@
     android:id="@+id/imgFoto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="50px"
     android:orientation="vertical">
 
 
@@ -12,13 +13,17 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars[3]" />
 
     <TextView
         android:id="@+id/txtTitulo"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="false"
         android:layout_centerHorizontal="true"
@@ -30,25 +35,27 @@
 
     <TextView
         android:id="@+id/txtDescricao"
-        android:layout_width="wrap_content"
+        android:layout_width="129dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtTitulo"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="false"
+        android:layout_marginTop="26dp"
         android:gravity="center"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/txtUsuario"
-        android:layout_width="wrap_content"
+        android:layout_width="123dp"
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="false"
-        android:layout_below="@id/txtDescricao"
+        android:layout_below="@+id/txtDescricao"
         android:layout_alignParentStart="false"
         android:layout_alignParentEnd="false"
         android:layout_alignParentBottom="false"
-        android:layout_centerInParent="true"
-        android:gravity="bottom|right"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:gravity="center"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent" />
 

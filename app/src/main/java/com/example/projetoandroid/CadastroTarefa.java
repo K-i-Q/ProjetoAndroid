@@ -72,7 +72,7 @@ public class CadastroTarefa extends AppCompatActivity {
                 tarefa.setTitulo(txtTitulo.getText().toString());
                 tarefa.setDescricao(txtDescricao.getText().toString());
 
-                DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("tarefas");
+                DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
 
                 myRef.child("tarefas").push().setValue(tarefa);
 

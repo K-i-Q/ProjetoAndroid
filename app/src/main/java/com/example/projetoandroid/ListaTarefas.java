@@ -32,13 +32,21 @@ public class ListaTarefas extends AppCompatActivity {
         final ArrayList<Tarefa> tarefas = new ArrayList<>();
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        layoutManager = new LinearLayoutManager(this);
+
+
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.child("tarefas").getChildren()){
-                    String titulo = ds.child("titulo").getValue(String.class);
-                    String descricao = ds.child("descricao").getValue(String.class);
-                    tarefas.add(new Tarefa(descricao, titulo));
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    for(DataSnapshot d : ds.getChildren()){
+                        String titulo = d.child("titulo").getValue(String.class);
+                        String descricao = d.child("descricao").getValue(String.class);
+                        tarefas.add(new Tarefa(descricao, titulo));
+                        recyclerView.setLayoutManager(layoutManager);
+                        mAdapter = new RecyclerAdapter(tarefas);
+                        recyclerView.setAdapter(mAdapter);
+                    }
                 }
             }
 
@@ -48,9 +56,6 @@ public class ListaTarefas extends AppCompatActivity {
             }
         });
 
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new RecyclerAdapter(tarefas);
-        recyclerView.setAdapter(mAdapter);
+
     }
 }
