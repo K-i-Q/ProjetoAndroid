@@ -1,6 +1,10 @@
 package com.example.projetoandroid;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,16 +42,27 @@ public class ListaTarefas extends AppCompatActivity {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    for(DataSnapshot d : ds.getChildren()){
-                        String titulo = d.child("titulo").getValue(String.class);
-                        String descricao = d.child("descricao").getValue(String.class);
-                        tarefas.add(new Tarefa(descricao, titulo));
-                        recyclerView.setLayoutManager(layoutManager);
-                        mAdapter = new RecyclerAdapter(tarefas);
-                        recyclerView.setAdapter(mAdapter);
+                ImageView imgViewFotoTarefa = findViewById(R.id.imgFotoTarefa);
+                Tarefa tarefa;
+                if(dataSnapshot.exists()){
+                    for (DataSnapshot ds : dataSnapshot.getChildren()){
+                        for(DataSnapshot d : ds.getChildren()){
+                            tarefa = ds.getValue(Tarefa.class);
+                            tarefa.titulo = d.child("titulo").getValue(String.class);
+                            tarefa.descricao = d.child("descricao").getValue(String.class);
+                            //tarefa.foto = d.child("foto").getValue(String.class);
+                            //byte[] decodedString = Base64.decode(tarefa.foto, Base64.DEFAULT);
+                            //Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                            //imgViewFotoTarefa.setImageBitmap(decodedByte);
+                            tarefas.add(new Tarefa(tarefa.descricao,tarefa.titulo));
+                            recyclerView.setLayoutManager(layoutManager);
+                            mAdapter = new RecyclerAdapter(tarefas);
+                            recyclerView.setAdapter(mAdapter);
+                        }
                     }
                 }
+
+
             }
 
             @Override

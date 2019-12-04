@@ -8,7 +8,7 @@ public class Tarefa {
     Integer id;
     String descricao;
     String titulo;
-    ImageView foto;
+    String foto;
     Usuario usuario;
 
     public Tarefa(String descricao, String titulo) {
@@ -44,11 +44,11 @@ public class Tarefa {
         this.titulo = titulo;
     }
 
-    public ImageView getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(ImageView foto) {
+    public void setFoto(String foto) {
        this.foto = foto;
     }
 

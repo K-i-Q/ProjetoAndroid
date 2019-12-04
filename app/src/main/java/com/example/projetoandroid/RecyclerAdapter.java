@@ -1,5 +1,8 @@
 package com.example.projetoandroid;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +37,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.descricao.setText(tarefa.getDescricao());
      //   holder.usuario.setText(tarefa.getUsuario().getNome());
        // holder.foto.setImageView(tarefa.getFoto());
-
+//        if (tarefa.foto != null) {
+//            byte[] decodedString = Base64.decode(tarefa.foto, Base64.DEFAULT);
+//            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            //holder.foto.setImageBitmap(decodedByte);
+//        }
 
     }
 
@@ -51,7 +58,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView titulo = itemView.findViewById(R.id.txtTitulo);
         TextView descricao = itemView.findViewById(R.id.txtDescricao);
         //TextView usuario = itemView.findViewById(R.id.txtUsuario);
-        //ImageView foto = itemView.findViewById(R.id.imageView);
+        //ImageView foto = itemView.findViewById(R.id.imgFoto);
 
 
 
